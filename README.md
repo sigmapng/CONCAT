@@ -1,0 +1,1 @@
+A concert ticket booking API built with Express, PostgreSQL, and Prisma, focused on handling concurrent bookings safely through transaction isolation, optimistic locking, and idempotent request handling.

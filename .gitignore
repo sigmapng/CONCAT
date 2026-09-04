@@ -1,0 +1,39 @@
+# dev
+.vscode/
+.vscode/*
+!.vscode/launch.json
+!.vscode/*.code-snippets
+
+# deps
+node_modules/
+
+# env
+.env
+.env.production
+
+# logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# misc
+.DS_Store
+
+# SCSS
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
+# build
+/dist
+
+# json
+*.cache.json
+*.log.json
+
+/.tmp
+/temp
+*.tmp

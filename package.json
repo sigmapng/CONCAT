@@ -1,0 +1,31 @@
+{
+  "name": "concat",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "**CONCAT** - _concert ticket booking service_ built with Express, PostgreSQL, and Prisma, focused on handling concurrent bookings safely through transaction isolation, optimistic locking, and idempotent request handling.",
+  "homepage": "https://github.com/sigmapng/CONCAT#readme",
+  "bugs": {
+    "url": "https://github.com/sigmapng/CONCAT/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sigmapng/CONCAT.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.10.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.4.1",
+    "prisma": "^7.10.0",
+    "typescript": "^7.0.2"
+  }
+}

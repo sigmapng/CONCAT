@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  username     String    @unique
+  firstName    String
+  lastName     String
+  email        String    @unique
+  passwordHash String
+  birthDate    DateTime  @db.Date
+  createdAt    DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt    DateTime  @default(now()) @db.Timestamptz(6)
+  bookings     Booking[]
+
+  @@map("users")
+}
+
+model Venue {
+  id           Int      @id @default(autoincrement())
+  venueName    String
+  venueAddress String
+  openingTime  DateTime @db.Time(6)
+  closingTime  DateTime @db.Time(6)
+  capacity     Int
+  createdAt    DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt    DateTime @default(now()) @db.Timestamptz(6)
+  events       Event[]
+
+  @@map("venue")
+}
+
+model Event {
+  id               Int              @id @default(autoincrement())
+  venueId          Int
+  eventName        String
+  artistName       String
+  minAge           Int
+  startingTime     DateTime         @db.Time(6)
+  eventDate        DateTime         @db.Date
+  minTicketPrice   Int
+  maxTicketPrice   Int
+  createdAt        DateTime         @default(now()) @db.Timestamptz(6)
+  updatedAt        DateTime         @default(now()) @db.Timestamptz(6)
+  bookings         Booking[]
+  venue            Venue            @relation(fields: [venueId], references: [id], onUpdate: NoAction)
+  ticketCategories TicketCategory[]
+
+  @@map("events")
+}
+
+model TicketCategory {
+  id          Int      @id @default(autoincrement())
+  eventId     Int
+  ticketName  String
+  price       Int
+  totalAmount Int
+  available   Int
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @db.Timestamptz(6)
+  tickets     Ticket[]
+  event       Event    @relation(fields: [eventId], references: [id], onUpdate: NoAction)
+
+  @@map("ticketCategory")
+}
+
+model Booking {
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  eventId       Int
+  bookingStatus String
+  ticketAmount  Int
+  createdAt     DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime  @default(now()) @db.Timestamptz(6)
+  event         Event     @relation(fields: [eventId], references: [id], onUpdate: NoAction)
+  user          User      @relation(fields: [userId], references: [id], onUpdate: NoAction)
+  payments      Payment[]
+  tickets       Ticket[]
+
+  @@map("booking")
+}
+
+model Payment {
+  id             Int      @id @default(autoincrement())
+  bookingId      Int
+  method         String
+  checkoutAmount Int
+  paymentStatus  String
+  createdAt      DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt      DateTime @default(now()) @db.Timestamptz(6)
+  booking        Booking  @relation(fields: [bookingId], references: [id], onUpdate: NoAction)
+
+  @@map("payment")
+}
+
+model Ticket {
+  id               Int            @id @default(autoincrement())
+  bookingId        Int
+  ticketCategoryId Int
+  qrCode           String         @unique
+  ticketStatus     String
+  createdAt        DateTime       @default(now()) @db.Timestamptz(6)
+  updatedAt        DateTime       @default(now()) @db.Timestamptz(6)
+  booking          Booking        @relation(fields: [bookingId], references: [id], onUpdate: NoAction)
+  ticketCategory   TicketCategory @relation(fields: [ticketCategoryId], references: [id], onUpdate: NoAction)
+
+  @@map("ticket")
+}

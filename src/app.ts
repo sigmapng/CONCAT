@@ -1,9 +1,12 @@
-import express, { type Express, type Request, type Response } from "express";
+import express, { type Request, type Response } from "express";
 
-const app: Express = express();
+const app = express();
+const port = 3000;
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("hello world!");
 });
 
-app.listen(3000);
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});

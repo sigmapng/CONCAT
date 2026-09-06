@@ -34,6 +34,9 @@ lerna-debug.log*
 *.cache.json
 *.log.json
 
+#tests
+.vitest/
+
 /.tmp
 /temp
 *.tmp

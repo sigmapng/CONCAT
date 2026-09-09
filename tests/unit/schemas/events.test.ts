@@ -1,5 +1,8 @@
 import { describe, expect, test } from "vitest";
-import { createEvents, updateEvents } from "../../src/schemas/events.schema.js";
+import {
+  createEvents,
+  updateEvents,
+} from "../../../src/schemas/events.schema.js";
 
 describe("Create events schema", () => {
   test("accepts valid event data", () => {

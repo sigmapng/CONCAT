@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { createVenue, updateVenue } from "../../src/schemas/venue.schema.js";
+import { createVenue, updateVenue } from "../../../src/schemas/venue.schema.js";
 
 describe("Create venue schema", () => {
   test("accept valid venue data", () => {

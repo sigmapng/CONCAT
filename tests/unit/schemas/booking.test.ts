@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import {
   createBooking,
   updateBooking,
-} from "../../src/schemas/booking.schema.js";
+} from "../../../src/schemas/booking.schema.js";
 
 describe("Create booking schema", () => {
   test("accepts valid booking data", () => {
